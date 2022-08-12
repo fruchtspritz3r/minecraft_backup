@@ -8,6 +8,10 @@
 # 
 ####################################
 
+
+# Give a name for this script
+SCRIPTNAME=${0##*/}
+
 # What to backup. Name of minecraft folder
 BACKUP_FILES="/home/tekkit"
 
@@ -19,6 +23,8 @@ TODAY=`date +%Y%m%d`
 NAME='tekkit'
 ARCHIVE="$TODAY-$NAME.tar.gz"
 
-# Backup the files using tar.
-cd /home/tekkit && tar cfvz $DEST/$ARCHIVE $BACKUP_FILES
+# Create Logfile
+LOGFILE="/var/log/scripts/$SCRIPTNAME.log"
 
+# Backup the files using tar.
+cd /home/tekkit && tar cfvz $DEST/$ARCHIVE $BACKUP_FILES >>$LOGFILE 2>&1
